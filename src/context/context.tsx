@@ -1,17 +1,23 @@
-import React, { Dispatch, useReducer } from "react";
-import { Actions, initialState, IState, reducer } from "./reducer";
+import React, { useState } from "react";
 
 interface IContextProps {
-  state: IState;
-  dispatch: Dispatch<Actions>;
+  state: {};
+  loadMoreData: () => void;
 }
 
 export const Context = React.createContext({} as IContextProps);
 
 export function ContextProvider(props: any) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, updateState] = useState({});
 
-  const value = { state, dispatch };
+  const loadMoreData = async () => {
+    /* Fetch more data
+      -- fetch
+      -- updateState
+    */
+  }
+
+  const value = { state, loadMoreData };
 
   return (
     <Context.Provider value={value}>{props.children}</Context.Provider>
